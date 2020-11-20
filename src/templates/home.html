@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>freeCodeCamp Try Django</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
     <h1>Hello World</h1>
+    <p>User: {{request.user}}</p>
+    <p>Is autenticated: {{request.user.is_authenticated}}</p>
     <p>This is a template</p>
-</body>
-</html>
+{% endblock %}
+
+{% block another_content %}
+    <h3>Another content</h3>
+{% endblock %}
