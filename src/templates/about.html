@@ -8,7 +8,22 @@
     </p>
     <ul>
         {% for item in my_list %}
-            <li>{{ forloop.counter }} - {{ item }}</li>
+            {% if item == 10 %}
+                <li>{{item}} is Ana's birth day</li>
+                <li>{{ forloop.counter }} - {{ item|add:19700800 }}</li>
+            {% elif item == 19 %}
+                <li>{{item}} is Annabelle's birth day</li>
+                <li>{{ forloop.counter }} - {{ item|add:20020100 }}</li>
+            {% elif item == 21 %}
+                <li>{{item}} is Tony's birth day</li>
+                <li>{{ forloop.counter }} - {{ item|add:19641100 }}</li>
+            {% elif item == 25 %}
+                <li>{{item}} is Miguel's birth day</li>
+                <li>{{ forloop.counter }} - {{ item|add:20040800 }}</li>
+
+            {% else %}
+                <li>{{item}} is not a family birth day</li>
+            {% endif %}
         {% endfor %}
     </ul>
 {% endblock %}
