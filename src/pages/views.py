@@ -24,4 +24,9 @@ def about_view(request, *args, **kwargs):
     print(f'Calling {__name__}.about_view() ...')
     print(f'request.user: {request.user}')
     # return HttpResponse("<h1>Contact View</h1>")
-    return render(request, "about.html", {})
+    my_context = {
+        'my_text': 'This is about us',
+        'my_number': 19,
+        'my_list': [10, 19, 21, 25]
+    }
+    return render(request, "about.html", my_context)
