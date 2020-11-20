@@ -6,4 +6,9 @@
     <p>
         {{ my_text }}, {{ my_number }}
     </p>
+    <ul>
+        {% for item in my_list %}
+            <li>{{ forloop.counter }} - {{ item }}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
