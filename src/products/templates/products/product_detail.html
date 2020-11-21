@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-<!-- This template won't be used, instead it uses products/template/products/product_detail.html -->
+
 {% block content %}
     <h1>Item</h1>
-    <p>Out of App template: Item: {{ object.title }}</p>
+    <p>(In App template) Item: {{ object.title }}</p>
     <p>Description: {% if object.description %}
             {{ object.description }}
         {% else %}
