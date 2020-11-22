@@ -19,7 +19,12 @@ def product_detail_view(request):
 
 
 def product_create_view(request):
-    form = ProductForm(request.POST or None)
+    initial_data = {
+        "title": "Initial title",
+    }
+    obj = Product.objects.get(id=1)
+    form = ProductForm(request.POST or None,
+                       initial=initial_data, instance=obj)
     if form.is_valid():
         form.save()
         form = ProductForm()
