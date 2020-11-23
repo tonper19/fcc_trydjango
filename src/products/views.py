@@ -5,17 +5,11 @@ from .forms import ProductForm, RawProductForm
 # Create your views here.
 
 
-def product_detail_view(request):
-    obj = Product.objects.get(id=1)
-    # context = {'title': obj.title,
-    #            'description': obj.description,
-    #            'price': obj.price,
-    #            }
+def product_detail_view(request, id=id):
+    obj = get_object_or_404(Product, id=id)
     context = {
-        'object': obj
+        "object": obj
     }
-    # return render(request, "product/detail.html", context)
-    # using in App template
     return render(request, "products/product_detail.html", context)
 
 
@@ -36,18 +30,15 @@ def product_create_view(request):
     return render(request, "products/product_create.html", context)
 
 
-def dynamic_lookup_view(request, id):
-    # obj = Product.objects.get(id=id)
+def product_update_view(request, id=id):
     obj = get_object_or_404(Product, id=id)
-    # try:
-    #     obj = Product.objects.get(id=id)
-    # except Product.DoesNotExist:
-    #     raise Http404
-
+    form = ProductForm(request.POST or None, instance=obj)
+    if form.is_valid():
+        form.save()
     context = {
-        "object": obj
+        "form": form
     }
-    return render(request, "products/product_detail.html", context)
+    return render(request, "products/product_create.html", context)
 
 
 def product_delete_view(request, id):
