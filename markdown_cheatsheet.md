@@ -12,6 +12,8 @@ _This text will be italic_
 
 _You **can** combine them_
 
+<del>deleted</del>
+
 ## LISTS
 
 - Item 1
