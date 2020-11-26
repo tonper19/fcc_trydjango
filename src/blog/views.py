@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
 # 2020-11-24
 from django.views.generic import (
     CreateView,
@@ -68,3 +69,18 @@ class ArticleUpdateView(UpdateView):
     # where to go in case of success option 3
     # def get_success_url(self) -> str:
     #     return '/'
+
+
+class ArticleDeleteView(DeleteView):
+    template_name = 'articles/article_delete.html'
+
+    # this may be a subset, in this case we are retreiving all data
+    # queryset = Article.objects.all()
+
+    # to override pk argument on the urls.py by the id:
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Article, id=id_)
+
+    def get_success_url(self) -> str:
+        return reverse('articles:article-list')
