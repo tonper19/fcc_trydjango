@@ -63,7 +63,7 @@ from django import forms
 from .models import Article
 
 
-class ArticleForm(forms.ModelForm):
+class ArticleModelForm(forms.ModelForm):
     title = forms.CharField(
         label='',
         widget=forms.TextInput(
