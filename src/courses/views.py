@@ -83,6 +83,8 @@ class CourseListView(View):
     queryset = Course.objects.all()
 
     def get_queryset(self):
+        print("*** App: Courses - CourseListView => queryset")
+        print(self.queryset)
         return self.queryset
 
     def get(self, request, *args, **kwargs):
