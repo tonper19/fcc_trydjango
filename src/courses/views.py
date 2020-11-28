@@ -21,6 +21,8 @@ class CourseCreateView(View):
         if form.is_valid():
             print("   *** Saving form")
             form.save()
+            print("   *** Reinitialize empty form")
+            form = CourseModuleForm()
         context = {"form": form}
         return render(request, self.template_name, context)
 
