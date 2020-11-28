@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from .models import Course
 from .forms import CourseModuleForm
@@ -47,17 +47,34 @@ class CourseUpdateView(View):
             context["form"] = form
         return render(request, self.template_name, context)
 
+
+class CourseDeleteView(View):
+    template_name = "courses/course_delete.html"
+
+    def get_object(self):
+        id = self.kwargs.get("id")
+        obj = None
+        if id is not None:
+            obj = get_object_or_404(Course, id=id)
+        return obj
+
+    def get(self, request, id=None, *args, **kwargs):
+        print("*** App: courses - views.py CourseDeleteView:get ")
+        context = {}
+        obj = self.get_object()
+        if obj is not None:
+            context["object"] = obj
+        return render(request, self.template_name, context)
+
     def post(self, request, id=None, *args, **kwargs):
         print("*** App: courses - views.py CourseUpdateView:post ")
         context = {}
         obj = self.get_object()
         if obj is not None:
-            form = CourseModuleForm(request.POST, instance=obj)
-            if form.is_valid():
-                print("   *** Updating form")
-                form.save()
-            context["object"] = obj
-            context["form"] = form
+            print("   *** Deleting form")
+            obj.delete()
+            context["object"] = None
+            return redirect("/courses/")
         return render(request, self.template_name, context)
 
 

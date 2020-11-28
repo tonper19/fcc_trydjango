@@ -4,6 +4,7 @@ from .views import (
     CourseListView,
     CourseCreateView,
     CourseUpdateView,
+    CourseDeleteView,
     # MyListView,
     # my_fbv
 )
@@ -17,6 +18,6 @@ urlpatterns = [
     path("create/", CourseCreateView.as_view(), name="courses-create"),
     path("<int:id>/", CourseView.as_view(), name="courses-detail"),
     path("<int:id>/update/", CourseUpdateView.as_view(), name="courses-update"),
-    # path("<int:id>/delete/", <delete_view>, name="courses-delete"),
+    path("<int:id>/delete/", CourseDeleteView.as_view(), name="courses-delete"),
 
 ]
