@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'pages',
     'blog',
     'courses',
+    # very own
+    'friends',
 ]
 
 MIDDLEWARE = [
